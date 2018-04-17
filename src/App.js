@@ -39,6 +39,10 @@ class App extends Component {
     })
   }
 
+  changename = (event) => {
+      this.switchnameHandler(event.target.value);
+  }
+
   render() {
     return (
       <div className="App">
@@ -52,7 +56,9 @@ class App extends Component {
         <button onClick={this.switchnameHandler.bind(this, 'Sean Bean')}>Switch Name</button>
         <Person
           name={this.state.person[1].name}
-          age={this.state.person[1].age}  > Likes guitar </Person>
+          age={this.state.person[1].age}  
+          changename = {this.changename}
+          > Likes guitar </Person>
 
         <Person
           name={this.state.person[2].name}
