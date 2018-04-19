@@ -42,9 +42,14 @@ class App extends Component {
 
   changename = (event) => {
       this.switchnameHandler(event.target.value);
-      
   }
 
+  changenamehandler = (event, idx) => {
+      const person = [...this.state.person];
+      person[idx].name = event.target.value;
+      this.setState({person : person});
+  }
+  
   toggleview = () => {
     const show = this.state.showPersons
     this.setState({
@@ -68,10 +73,16 @@ class App extends Component {
       persons = (
         <div>
           {
-            this.state.person.map(person => <Person name={person.name} age={person.age} />)
+            this.state.person.map((person,idx) => 
+            <Person 
+            name={person.name} 
+            age={person.age}
+            change={ event => this.changenamehandler(event, idx) } 
+            key={idx}/>
+          )
           }
         </div>
-      )
+      ) 
     }
 
     return (
